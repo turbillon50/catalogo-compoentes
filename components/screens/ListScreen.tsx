@@ -27,13 +27,13 @@ export function ListScreen({ items, cta, onSelect, onCta, className }: ListScree
             key={i}
             type="button"
             onClick={() => onSelect?.(i)}
-            className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-[var(--vfc-surface-2)]"
+            className="flex w-full items-center justify-between px-4 py-3 text-left transition-colors duration-150 ease-casa hover:bg-[var(--vfc-surface-2)]"
           >
             <div>
               <p className="text-sm font-medium text-[var(--vfc-fg)]">{it.t}</p>
               <p className="text-xs text-[var(--vfc-fg-muted)]">{it.s}</p>
             </div>
-            {it.m && <span className="shrink-0 pl-3 text-sm text-[var(--vfc-fg-muted)]">{it.m}</span>}
+            {it.m && <span className="shrink-0 pl-3 text-sm tabular-nums text-[var(--vfc-fg-muted)]">{it.m}</span>}
           </button>
         ))}
       </div>

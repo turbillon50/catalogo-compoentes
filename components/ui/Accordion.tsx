@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { IconChevD } from "@/components/brand/VFIcons";
 
@@ -43,14 +44,27 @@ export function AccordionItem({
         className="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-[var(--vfc-fg)] hover:bg-[var(--vfc-surface-2)]"
       >
         {title}
-        <IconChevD
-          size={16}
-          className={cn("text-[var(--vfc-fg-muted)] transition-transform", open && "rotate-180")}
-        />
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ type: "spring", stiffness: 400, damping: 28 }}
+          className="text-[var(--vfc-fg-muted)]"
+        >
+          <IconChevD size={16} />
+        </motion.span>
       </button>
-      {open && (
-        <div className="px-4 pb-4 text-sm text-[var(--vfc-fg-muted)]">{children}</div>
-      )}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ height: { duration: 0.25, ease: "easeInOut" }, opacity: { duration: 0.18 } }}
+            className="overflow-hidden"
+          >
+            <div className="px-4 pb-4 text-sm text-[var(--vfc-fg-muted)]">{children}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

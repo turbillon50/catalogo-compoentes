@@ -1,8 +1,7 @@
 # Catálogo de Componentes — VForge
 
-Librería centralizada de componentes UI (`Button`, `Card`, `Modal`, más los
-que se vayan agregando) para que cualquier app del portafolio la importe en
-vez de reinventar botones y modales cada vez.
+Librería centralizada de componentes UI para que cualquier app del portafolio
+la importe en vez de reinventar botones, modales o pantallas cada vez.
 
 ## Decisión de arquitectura: sin paleta fija
 
@@ -22,23 +21,47 @@ mismos componentes se ven con su marca, sin tocar el código:
 }
 ```
 
-## Qué hay ahorita (v1)
+## Qué hay ahorita
 
+### Componentes base (`components/ui/`)
 - `Button` — variantes `primary | secondary | ghost | danger`, tamaños
   `sm | md | lg`, estado `loading`.
 - `Card` — con `CardTitle` / `CardDescription`, prop `interactive` para
   hover lift.
 - `Modal` — cierre con Escape/click fuera, manejo básico de foco, entrada
   fade+translateY con Framer Motion.
-- `components/brand/VFIcons.tsx` — subset curado (`IconCheck`, `IconX`,
-  `IconChevD`, `IconLoader`, `IconWarn`, `IconInfo`), sincronizado a mano
-  con el patrón real de `turbillon50/vforge/components/brand/VFIcons.tsx`.
-  Si necesitas un ícono que no está aquí, cópialo de esa fuente con el
-  mismo patrón — nunca Lucide React.
 
-`app/page.tsx` es el showcase: corre `npm run dev` y ahí se ven todos los
-componentes en vivo, sirve como referencia visual y como sitio para
-capturar screenshots de documentación.
+### Kit de pantallas (`components/screens/`)
+Los 11 patrones de layout que se repiten en las 16 plantillas de negocio del
+**protocolo de hornadas** (`/home/vagent/hornada/plantillas.js`, el archivo
+que usa el worker de cada hornada como brief de datos). Cada componente
+recibe el mismo shape de `datos` que ya trae ese archivo — sin transformar
+nada — así que las 16 plantillas (chat IA, e-commerce, delivery, red social,
+servicios, finanzas, fitness, restaurante, reservas, educación, noticias,
+viajes, música, streaming, movilidad) le entran directo:
+
+| Componente | `tipo` | Qué renderiza |
+|---|---|---|
+| `ChatScreen` | `chat` | burbujas + sugerencias + input |
+| `GridScreen` | `grid` | catálogo 2 columnas |
+| `ListScreen` | `list` | filas título/subtítulo/meta + CTA |
+| `DetailScreen` | `detail` | ficha con specs + CTA |
+| `ProfileScreen` | `profile` | header + menú |
+| `MapScreen` | `map` | placeholder de mapa + opciones de ruta |
+| `DashboardScreen` | `dashboard` | saldo + acciones + movimientos |
+| `PlayerScreen` | `player` | reproductor + cola |
+| `CalendarScreen` | `calendar` | slots de horario + CTA |
+| `FeedScreen` | `feed` | timeline de posts |
+| `LoginScreen` | `login` | entrada con email/password |
+
+`components/brand/VFIcons.tsx` — subset curado (17 íconos), sincronizado a
+mano con el patrón real de `turbillon50/vforge/components/brand/VFIcons.tsx`
+y con los mismos paths que `plantillas.js` (`IC`). Si necesitas un ícono que
+no está aquí, cópialo de esa fuente con el mismo patrón — nunca Lucide React.
+
+`app/page.tsx` — showcase de los componentes base.
+`app/screens/page.tsx` — showcase del kit de pantallas con datos reales
+copiados de `plantillas.js` (ver `lib/sample-data.ts`).
 
 ## Cómo consumirla desde otra app (hoy)
 
@@ -48,15 +71,15 @@ Todavía no hay registro npm privado, así que por ahora la forma directa es:
 npm install github:turbillon50/catalogo-compoentes
 ```
 
-e importar como paquete de workspace, o copiar la carpeta `components/ui`
-+ `components/brand` + los tokens de `globals.css` al proyecto consumidor.
-Cuando el catálogo crezca y varias apps lo usen de verdad, vale la pena
-formalizarlo como paquete privado en un registro (o pnpm workspace si se
-mueve a monorepo).
+e importar como paquete de workspace, o copiar las carpetas `components/ui`,
+`components/screens`, `components/brand` + los tokens de `globals.css` al
+proyecto consumidor. Cuando el catálogo crezca y varias apps lo usen de
+verdad, vale la pena formalizarlo como paquete privado en un registro (o
+pnpm workspace si se mueve a monorepo).
 
 ## Pendiente
 
-- Agregar `Badge`, `Input`, `Select`.
+- Agregar `Badge`, `Input`, `Select` a los componentes base.
 - Tests visuales / Storybook si el catálogo crece.
 - Conectar con el Brain para generar screenshots automáticos de cada
   componente (la integración que ya menciona V en el chat de VForge).

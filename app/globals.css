@@ -136,6 +136,122 @@
   }
 }
 
+/*
+ * PRESET WARM — cálido/redondeado, tipo Airbnb. Acento naranja (el mismo
+ * de V&LIVING, #F75602, ya validado como referencia de este estilo).
+ */
+[data-theme="warm"] {
+  --vfc-bg: #fffbf7;
+  --vfc-surface: #ffffff;
+  --vfc-surface-2: #fff4ec;
+  --vfc-border: #f0e4d8;
+  --vfc-border-strong: #1a1a1a;
+
+  --vfc-fg: #1a1a1a;
+  --vfc-fg-muted: #8a7a6d;
+  --vfc-fg-on-accent: #ffffff;
+
+  --vfc-accent: #f75602;
+  --vfc-accent-hover: #d94c02;
+
+  --vfc-danger: #d92d20;
+  --vfc-danger-fg: #ffffff;
+  --vfc-success: #16a34a;
+  --vfc-success-fg: #ffffff;
+  --vfc-warning: #f59e0b;
+  --vfc-warning-fg: #1a1a1a;
+
+  --vfc-radius: 14px;
+  --vfc-radius-lg: 24px;
+  --vfc-shadow: 0 2px 8px rgba(247, 86, 2, 0.08);
+  --vfc-shadow-lg: 0 20px 50px rgba(247, 86, 2, 0.16);
+
+  background: var(--vfc-bg);
+  color: var(--vfc-fg);
+}
+
+/*
+ * PRESET FINTECH — serio, azul, cortante. Para proyectos de dinero/confianza
+ * (Zuxen, VCredit, Crede-ti).
+ */
+[data-theme="fintech"] {
+  --vfc-bg: #f7f9fc;
+  --vfc-surface: #ffffff;
+  --vfc-surface-2: #eef2f8;
+  --vfc-border: #dde3ed;
+  --vfc-border-strong: #0b1220;
+
+  --vfc-fg: #0b1220;
+  --vfc-fg-muted: #5b6b85;
+  --vfc-fg-on-accent: #ffffff;
+
+  --vfc-accent: #1d4ed8;
+  --vfc-accent-hover: #1e40af;
+
+  --vfc-danger: #dc2626;
+  --vfc-danger-fg: #ffffff;
+  --vfc-success: #059669;
+  --vfc-success-fg: #ffffff;
+  --vfc-warning: #d97706;
+  --vfc-warning-fg: #ffffff;
+
+  --vfc-radius: 6px;
+  --vfc-radius-lg: 10px;
+  --vfc-shadow: 0 1px 2px rgba(11, 18, 32, 0.06);
+  --vfc-shadow-lg: 0 12px 32px rgba(11, 18, 32, 0.12);
+
+  background: var(--vfc-bg);
+  color: var(--vfc-fg);
+}
+
+/*
+ * PRESET PLAYFUL — vibrante, para social/consumo. Acento morado, radios
+ * grandes, sombras con color.
+ */
+[data-theme="playful"] {
+  --vfc-bg: #ffffff;
+  --vfc-surface: #ffffff;
+  --vfc-surface-2: #f5f3ff;
+  --vfc-border: #e9e4ff;
+  --vfc-border-strong: #18122b;
+
+  --vfc-fg: #18122b;
+  --vfc-fg-muted: #7c6fa3;
+  --vfc-fg-on-accent: #ffffff;
+
+  --vfc-accent: #a855f7;
+  --vfc-accent-hover: #9333ea;
+
+  --vfc-danger: #f43f5e;
+  --vfc-danger-fg: #ffffff;
+  --vfc-success: #10b981;
+  --vfc-success-fg: #ffffff;
+  --vfc-warning: #fbbf24;
+  --vfc-warning-fg: #18122b;
+
+  --vfc-radius: 20px;
+  --vfc-radius-lg: 28px;
+  --vfc-shadow: 0 4px 14px rgba(124, 58, 237, 0.12);
+  --vfc-shadow-lg: 0 24px 60px rgba(168, 85, 247, 0.22);
+
+  background: var(--vfc-bg);
+  color: var(--vfc-fg);
+}
+
+/* --- Skeleton pulse (components/ui/Skeleton) --- */
+@keyframes vfc-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.vfc-skeleton {
+  animation: vfc-pulse 1.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .vfc-skeleton {
+    animation: none !important;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

@@ -30,6 +30,9 @@ mismos componentes se ven con su marca, sin tocar el código:
   hover lift.
 - `Modal` — cierre con Escape/click fuera, manejo básico de foco, entrada
   fade+translateY con Framer Motion.
+- `Badge` — variantes `default | success | warning | danger`.
+- `Input` — con `label` y estado `error`.
+- `Select` — select nativo estilizado (accesible, sin dropdown propio).
 
 ### Kit de pantallas (`components/screens/`)
 Los 11 patrones de layout que se repiten en las 16 plantillas de negocio del
@@ -79,7 +82,7 @@ pnpm workspace si se mueve a monorepo).
 
 ## Pendiente
 
-- Agregar `Badge`, `Input`, `Select` a los componentes base.
 - Tests visuales / Storybook si el catálogo crece.
 - Conectar con el Brain para generar screenshots automáticos de cada
   componente (la integración que ya menciona V en el chat de VForge).
+- Formalizar como paquete npm privado cuando 2+ apps reales lo consuman.

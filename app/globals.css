@@ -2,18 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
- * TOKENS DE TEMA — VFC (VForge Components)
- * -----------------------------------------------------------------------
- * Esta libreria no tiene paleta fija. Cada componente lee su color de
- * estas variables. Los valores de aqui son solo el DEFAULT que se usa si
- * la app que importa el componente no define los suyos — hoy calcado del
- * look real de vforge.site en produccion (blanco/negro, minimal).
- *
- * Para que una app use su propia marca, sobreescribe estas variables en
- * su propio :root (ej. V&LIVING pondria --vfc-accent: #F75602). No hay
- * que tocar el codigo de los componentes.
- */
 :root {
   --vfc-bg: #ffffff;
   --vfc-surface: #ffffff;
@@ -43,6 +31,109 @@
   --vfc-shadow-lg: 0 18px 50px rgba(0, 0, 0, 0.12);
 
   --vfc-font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/*
+ * PRESET CRAFT — negro absoluto, acento violeta, mismo set de variables.
+ * Se activa con <div data-theme="craft"> envolviendo cualquier parte del
+ * árbol — los componentes base (Button, Card, Badge...) no se tocan, solo
+ * leen otros valores. Colores tomados del "Iron Man HUD" original del
+ * sistema de diseño (violeta/cian/dorado sobre obsidiana), aquí llevados
+ * a negro puro por el pedido explícito de Luis.
+ */
+[data-theme="craft"] {
+  --vfc-bg: #000000;
+  --vfc-surface: #000000;
+  --vfc-surface-2: #0a0a0c;
+  --vfc-border: rgba(255, 255, 255, 0.1);
+  --vfc-border-strong: rgba(255, 255, 255, 0.28);
+
+  --vfc-fg: #f4f6ff;
+  --vfc-fg-muted: #8b93ab;
+  --vfc-fg-on-accent: #050505;
+
+  --vfc-accent: #7c3aed;
+  --vfc-accent-hover: #9457ff;
+
+  --vfc-danger: #ff5470;
+  --vfc-danger-fg: #050505;
+  --vfc-success: #22d97a;
+  --vfc-success-fg: #050505;
+  --vfc-warning: #fbbf24;
+  --vfc-warning-fg: #050505;
+
+  --vfc-radius: 12px;
+  --vfc-radius-lg: 22px;
+  --vfc-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  --vfc-shadow-lg: 0 30px 80px rgba(124, 58, 237, 0.28);
+
+  /* solo del preset craft, no del set base */
+  --vfc-craft-cyan: #22d3ee;
+  --vfc-craft-gold: #fbbf24;
+
+  background: #000000;
+  color: var(--vfc-fg);
+}
+
+/* --- Mesh vivo (components/craft/MeshBackground) --- */
+.vfc-mesh-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.55;
+  will-change: transform;
+}
+.vfc-mesh-blob-1 {
+  width: 60vmax;
+  height: 60vmax;
+  left: -10%;
+  top: -15%;
+  background: radial-gradient(circle, var(--vfc-accent) 0%, transparent 70%);
+  animation: vfc-float-1 26s ease-in-out infinite alternate;
+}
+.vfc-mesh-blob-2 {
+  width: 50vmax;
+  height: 50vmax;
+  right: -15%;
+  top: 5%;
+  background: radial-gradient(circle, var(--vfc-craft-cyan) 0%, transparent 70%);
+  animation: vfc-float-2 32s ease-in-out infinite alternate;
+}
+.vfc-mesh-blob-3 {
+  width: 45vmax;
+  height: 45vmax;
+  left: 15%;
+  bottom: -20%;
+  opacity: 0.32;
+  background: radial-gradient(circle, var(--vfc-craft-gold) 0%, transparent 70%);
+  animation: vfc-float-3 38s ease-in-out infinite alternate;
+}
+@keyframes vfc-float-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(8%, 10%) scale(1.15); }
+}
+@keyframes vfc-float-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-10%, 6%) scale(0.9); }
+}
+@keyframes vfc-float-3 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(6%, -8%) scale(1.1); }
+}
+
+/* --- Ripple (components/craft/LiquidButton) --- */
+@keyframes vfc-ripple {
+  to {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vfc-mesh-blob {
+    animation: none !important;
+  }
 }
 
 * {

@@ -1,17 +1,7 @@
 import type { Config } from "tailwindcss";
 
-// Nota de arquitectura: esta libreria NO trae paleta de color propia.
-// Los componentes leen colores, radios y sombras de variables CSS (--vfc-*)
-// definidas en app/globals.css como default, y que cualquier app consumidora
-// puede sobreescribir en su propio :root para heredar su marca.
-// Por eso aqui no se extiende `colors` — los componentes usan clases
-// arbitrarias de Tailwind tipo bg-[var(--vfc-surface)].
-
 const config: Config = {
-  content: [
-    "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-  ],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       borderRadius: {
@@ -24,6 +14,20 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--vfc-font-sans, ui-sans-serif)", "system-ui", "sans-serif"],
+      },
+      // Regla 6 — cuerpo mínimo 15px, interlineado 1.6 (usar text-body en
+      // copy real; badges/labels/meta quedan en las escalas chicas normales).
+      fontSize: {
+        body: ["15px", { lineHeight: "1.6" }],
+      },
+      // Regla 4 — easing propietario de la casa. Prohibido ease/ease-in-out/
+      // linear salvo shimmer/spin (esos siguen con su propio keyframe).
+      transitionTimingFunction: {
+        casa: "cubic-bezier(0.19, 1, 0.22, 1)",
+        spring: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      },
+      ringColor: {
+        vfc: "var(--vfc-focus-ring)",
       },
     },
   },

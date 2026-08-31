@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 
 export interface TooltipProps {
@@ -11,7 +12,7 @@ export interface TooltipProps {
   className?: string;
 }
 
-/** Etiqueta al hover/focus. Sin librería de posicionamiento — top/bottom simple, centrado. */
+/** Etiqueta al hover/focus — entra con resorte real, no aparece de golpe. Con caret apuntando al trigger. */
 export function Tooltip({ content, children, side = "top", className }: TooltipProps) {
   const [open, setOpen] = useState(false);
   return (
@@ -23,17 +24,29 @@ export function Tooltip({ content, children, side = "top", className }: TooltipP
       onBlur={() => setOpen(false)}
     >
       {children}
-      {open && (
-        <span
-          role="tooltip"
-          className={cn(
-            "pointer-events-none absolute left-1/2 z-50 -translate-x-1/2 whitespace-nowrap rounded-vfc bg-[var(--vfc-border-strong)] px-2 py-1 text-xs text-[var(--vfc-bg)]",
-            side === "top" ? "bottom-full mb-2" : "top-full mt-2"
-          )}
-        >
-          {content}
-        </span>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.span
+            role="tooltip"
+            initial={{ opacity: 0, scale: 0.9, y: side === "top" ? 4 : -4 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: side === "top" ? 4 : -4 }}
+            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            className={cn(
+              "pointer-events-none absolute left-1/2 z-50 -translate-x-1/2 whitespace-nowrap rounded-vfc bg-[var(--vfc-border-strong)] px-2.5 py-1.5 text-xs font-medium text-[var(--vfc-bg)] shadow-vfc-lg",
+              side === "top" ? "bottom-full mb-2.5" : "top-full mt-2.5"
+            )}
+          >
+            {content}
+            <span
+              className={cn(
+                "absolute left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 bg-[var(--vfc-border-strong)]",
+                side === "top" ? "-bottom-1" : "-top-1"
+              )}
+            />
+          </motion.span>
+        )}
+      </AnimatePresence>
     </span>
   );
 }

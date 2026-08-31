@@ -11,9 +11,9 @@ export interface InputProps
 }
 
 /**
- * Input base tematizable. `error` pone el borde en --vfc-danger y muestra
- * el mensaje debajo — es el mismo patrón que ya usan LoginScreen y ChatScreen
- * a mano, aquí formalizado como componente reusable.
+ * Regla 8 — mb-1.5(6px)->mb-2(8px), py-2.5(10px)->py-3(12px): ritmo de 4px.
+ * Regla 4 — easing de la casa en vez de la transición genérica.
+ * Foco visible lo da el anillo global (:focus-visible en globals.css).
  */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, id, className, ...rest }, ref) => {
@@ -23,7 +23,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="mb-1.5 block text-xs font-medium text-[var(--vfc-fg-muted)]"
+            className="mb-2 block text-xs font-medium text-[var(--vfc-fg-muted)]"
           >
             {label}
           </label>
@@ -32,7 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            "w-full rounded-vfc border bg-[var(--vfc-surface)] px-3 py-2.5 text-sm text-[var(--vfc-fg)] outline-none transition-colors",
+            "w-full rounded-vfc border bg-[var(--vfc-surface)] px-3 py-3 text-sm text-[var(--vfc-fg)] outline-none transition-colors duration-150 ease-casa disabled:cursor-not-allowed disabled:opacity-50",
             error
               ? "border-[var(--vfc-danger)]"
               : "border-[var(--vfc-border)] focus:border-[var(--vfc-border-strong)]",

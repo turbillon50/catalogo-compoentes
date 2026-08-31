@@ -37,7 +37,7 @@ export function ChatScreen({
           <div key={i} className={cn("flex", m.de === "u" ? "justify-end" : "justify-start")}>
             <div
               className={cn(
-                "max-w-[80%] rounded-vfc-lg px-4 py-2.5 text-sm leading-relaxed",
+                "max-w-[80%] rounded-vfc-lg px-4 py-3 text-sm leading-relaxed",
                 m.de === "u"
                   ? "bg-[var(--vfc-accent)] text-[var(--vfc-fg-on-accent)]"
                   : "bg-[var(--vfc-surface-2)] text-[var(--vfc-fg)]"
@@ -56,7 +56,7 @@ export function ChatScreen({
               key={i}
               type="button"
               onClick={() => onSuggestion?.(s)}
-              className="shrink-0 rounded-vfc border border-[var(--vfc-border)] px-3 py-1.5 text-xs text-[var(--vfc-fg-muted)] hover:border-[var(--vfc-border-strong)] hover:text-[var(--vfc-fg)]"
+              className="shrink-0 rounded-vfc border border-[var(--vfc-border)] px-3 py-2 text-xs text-[var(--vfc-fg-muted)] transition-colors duration-150 ease-casa hover:border-[var(--vfc-border-strong)] hover:text-[var(--vfc-fg)]"
             >
               {s}
             </button>
@@ -83,7 +83,7 @@ export function ChatScreen({
         <button
           type="submit"
           aria-label="Enviar"
-          className="flex h-9 w-9 items-center justify-center rounded-vfc bg-[var(--vfc-accent)] text-[var(--vfc-fg-on-accent)] hover:bg-[var(--vfc-accent-hover)]"
+          className="flex h-9 w-9 items-center justify-center rounded-vfc bg-[var(--vfc-accent)] text-[var(--vfc-fg-on-accent)] transition-colors duration-150 ease-casa hover:bg-[var(--vfc-accent-hover)]"
         >
           <IconSend size={16} />
         </button>

@@ -34,7 +34,7 @@ export function ProfileScreen({ nombre, correo, menu, onSelect, className }: Pro
             key={i}
             type="button"
             onClick={() => onSelect?.(i)}
-            className="flex w-full items-center justify-between px-4 py-3 text-left text-sm text-[var(--vfc-fg)] hover:bg-[var(--vfc-surface-2)]"
+            className="flex w-full items-center justify-between px-4 py-3 text-left text-sm text-[var(--vfc-fg)] transition-colors duration-150 ease-casa hover:bg-[var(--vfc-surface-2)]"
           >
             {mi.t}
             <IconChevR size={16} className="text-[var(--vfc-fg-muted)]" />

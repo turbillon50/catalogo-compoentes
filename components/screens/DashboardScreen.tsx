@@ -22,8 +22,8 @@ export interface DashboardScreenProps {
 export function DashboardScreen({ saldo, cambio, acciones, movs, onAccion, className }: DashboardScreenProps) {
   return (
     <div className={cn("p-4", className)}>
-      <div className="mb-4 rounded-vfc-lg border border-[var(--vfc-border)] bg-[var(--vfc-surface)] p-5 text-center shadow-vfc">
-        <p className="text-3xl font-medium text-[var(--vfc-fg)]">{saldo}</p>
+      <div className="mb-4 rounded-vfc-lg border border-[var(--vfc-border)] bg-[var(--vfc-surface)] p-6 text-center shadow-vfc">
+        <p className="text-3xl font-medium tabular-nums text-[var(--vfc-fg)]">{saldo}</p>
         <p className="mt-1 text-sm text-[var(--vfc-fg-muted)]">{cambio}</p>
       </div>
 
@@ -33,7 +33,7 @@ export function DashboardScreen({ saldo, cambio, acciones, movs, onAccion, class
             key={i}
             type="button"
             onClick={() => onAccion?.(i)}
-            className="rounded-vfc border border-[var(--vfc-border)] py-2.5 text-xs font-medium text-[var(--vfc-fg)] hover:border-[var(--vfc-border-strong)] hover:bg-[var(--vfc-surface-2)]"
+            className="rounded-vfc border border-[var(--vfc-border)] py-3 text-xs font-medium text-[var(--vfc-fg)] transition-colors duration-150 ease-casa hover:border-[var(--vfc-border-strong)] hover:bg-[var(--vfc-surface-2)]"
           >
             {a}
           </button>
@@ -49,7 +49,7 @@ export function DashboardScreen({ saldo, cambio, acciones, movs, onAccion, class
             </div>
             <span
               className={cn(
-                "text-sm font-medium",
+                "text-sm font-medium tabular-nums",
                 mv.neg ? "text-[var(--vfc-danger)]" : "text-[var(--vfc-fg)]"
               )}
             >

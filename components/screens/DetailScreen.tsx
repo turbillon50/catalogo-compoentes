@@ -24,14 +24,14 @@ export function DetailScreen({ t, s, precio, desc, cta, specs, onCta, className 
         <div>
           <div className="flex items-start justify-between gap-3">
             <h2 className="text-lg font-medium text-[var(--vfc-fg)]">{t}</h2>
-            {precio && <span className="shrink-0 text-lg font-medium text-[var(--vfc-fg)]">{precio}</span>}
+            {precio && <span className="shrink-0 text-lg font-medium tabular-nums text-[var(--vfc-fg)]">{precio}</span>}
           </div>
           <p className="text-sm text-[var(--vfc-fg-muted)]">{s}</p>
         </div>
 
-        <p className="text-sm leading-relaxed text-[var(--vfc-fg-muted)]">{desc}</p>
+        <p className="text-body text-[var(--vfc-fg-muted)]">{desc}</p>
 
-        <ul className="space-y-1.5">
+        <ul className="space-y-2">
           {specs.map((sp, i) => (
             <li key={i} className="flex items-center gap-2 text-sm text-[var(--vfc-fg)]">
               <IconCheck size={14} className="shrink-0 text-[var(--vfc-fg-muted)]" />

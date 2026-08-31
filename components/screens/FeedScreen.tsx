@@ -26,7 +26,7 @@ export function FeedScreen({ posts, onSelect, className }: FeedScreenProps) {
           key={i}
           type="button"
           onClick={() => onSelect?.(i)}
-          className="flex w-full gap-3 px-4 py-4 text-left hover:bg-[var(--vfc-surface-2)]"
+          className="flex w-full gap-3 px-4 py-4 text-left transition-colors duration-150 ease-casa hover:bg-[var(--vfc-surface-2)]"
         >
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--vfc-surface-2)] text-[var(--vfc-fg-muted)]">
             <IconUser size={16} />
@@ -37,7 +37,7 @@ export function FeedScreen({ posts, onSelect, className }: FeedScreenProps) {
               <span className="text-[var(--vfc-fg-muted)]">{p.h}</span>
             </p>
             <p className="mt-1 text-sm leading-relaxed text-[var(--vfc-fg)]">{p.t}</p>
-            <div className="mt-2 flex items-center gap-4 text-xs text-[var(--vfc-fg-muted)]">
+            <div className="mt-2 flex items-center gap-4 text-xs tabular-nums text-[var(--vfc-fg-muted)]">
               <span className="flex items-center gap-1">
                 <IconHeart size={14} /> {p.likes}
               </span>

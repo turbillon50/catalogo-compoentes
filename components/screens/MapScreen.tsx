@@ -27,7 +27,7 @@ export function MapScreen({ origen, destino, eta, opciones, onSelect, className 
     <div className={cn("flex h-full flex-col", className)}>
       <div className="relative flex h-40 items-center justify-center bg-[var(--vfc-surface-2)]">
         <IconPin size={28} className="text-[var(--vfc-fg-muted)]" />
-        <span className="absolute right-3 top-3 rounded-vfc bg-[var(--vfc-surface)] px-2 py-1 text-xs text-[var(--vfc-fg)] shadow-vfc">
+        <span className="absolute right-3 top-3 rounded-vfc bg-[var(--vfc-surface)] px-2 py-1 text-xs tabular-nums text-[var(--vfc-fg)] shadow-vfc">
           ETA {eta}
         </span>
       </div>
@@ -44,13 +44,13 @@ export function MapScreen({ origen, destino, eta, opciones, onSelect, className 
             key={i}
             type="button"
             onClick={() => onSelect?.(i)}
-            className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-[var(--vfc-surface-2)]"
+            className="flex w-full items-center justify-between px-4 py-3 text-left transition-colors duration-150 ease-casa hover:bg-[var(--vfc-surface-2)]"
           >
             <div>
               <p className="text-sm font-medium text-[var(--vfc-fg)]">{op.t}</p>
               <p className="text-xs text-[var(--vfc-fg-muted)]">{op.s}</p>
             </div>
-            <span className="text-sm font-medium text-[var(--vfc-fg)]">{op.p}</span>
+            <span className="text-sm font-medium tabular-nums text-[var(--vfc-fg)]">{op.p}</span>
           </button>
         ))}
       </div>

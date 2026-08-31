@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * TOKENS DE TEMA — VFC (VForge Components)
+ * -----------------------------------------------------------------------
+ * Esta libreria no tiene paleta fija. Cada componente lee su color de
+ * estas variables. Los valores de aqui son solo el DEFAULT que se usa si
+ * la app que importa el componente no define los suyos — hoy calcado del
+ * look real de vforge.site en produccion (blanco/negro, minimal).
+ *
+ * Para que una app use su propia marca, sobreescribe estas variables en
+ * su propio :root (ej. V&LIVING pondria --vfc-accent: #F75602). No hay
+ * que tocar el codigo de los componentes.
+ */
+:root {
+  --vfc-bg: #ffffff;
+  --vfc-surface: #ffffff;
+  --vfc-surface-2: #f7f7f5;
+  --vfc-border: #dedfdf;
+  --vfc-border-strong: #090909;
+
+  --vfc-fg: #090909;
+  --vfc-fg-muted: #73767b;
+  --vfc-fg-on-accent: #ffffff;
+
+  --vfc-accent: #090909;
+  --vfc-accent-hover: #2b2b2b;
+
+  --vfc-danger: #c22323;
+  --vfc-danger-fg: #ffffff;
+
+  --vfc-radius: 8px;
+  --vfc-radius-lg: 16px;
+  --vfc-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --vfc-shadow-lg: 0 18px 50px rgba(0, 0, 0, 0.12);
+
+  --vfc-font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--vfc-bg);
+  color: var(--vfc-fg);
+  font-family: var(--vfc-font-sans);
+}

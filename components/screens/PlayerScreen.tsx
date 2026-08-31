@@ -32,7 +32,7 @@ export function PlayerScreen({ t, s, cola, onPlay, onSelect, className }: Player
           type="button"
           onClick={onPlay}
           aria-label="Reproducir"
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--vfc-accent)] pl-0.5 text-[var(--vfc-fg-on-accent)] hover:bg-[var(--vfc-accent-hover)]"
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--vfc-accent)] pl-0.5 text-[var(--vfc-fg-on-accent)] transition-colors duration-150 ease-casa hover:bg-[var(--vfc-accent-hover)]"
         >
           <IconPlay size={18} />
         </button>
@@ -44,13 +44,13 @@ export function PlayerScreen({ t, s, cola, onPlay, onSelect, className }: Player
             key={i}
             type="button"
             onClick={() => onSelect?.(i)}
-            className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-[var(--vfc-surface-2)]"
+            className="flex w-full items-center justify-between px-4 py-3 text-left transition-colors duration-150 ease-casa hover:bg-[var(--vfc-surface-2)]"
           >
             <div>
               <p className="text-sm font-medium text-[var(--vfc-fg)]">{c.t}</p>
               <p className="text-xs text-[var(--vfc-fg-muted)]">{c.s}</p>
             </div>
-            <span className="text-xs text-[var(--vfc-fg-muted)]">{c.d}</span>
+            <span className="text-xs tabular-nums text-[var(--vfc-fg-muted)]">{c.d}</span>
           </button>
         ))}
       </div>

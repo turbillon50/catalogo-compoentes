@@ -31,10 +31,10 @@ export function GridScreen({ titulo, prods, onSelect, className }: GridScreenPro
             variants={item}
             type="button"
             onClick={() => onSelect?.(i)}
-            className="relative rounded-vfc-lg border border-[var(--vfc-border)] bg-[var(--vfc-surface)] p-3 text-left transition-shadow hover:shadow-vfc-lg"
+            className="relative rounded-vfc-lg border border-[var(--vfc-border)] bg-[var(--vfc-surface)] p-3 text-left transition-shadow duration-150 ease-casa hover:shadow-vfc-lg"
           >
             {p.badge && (
-              <span className="absolute right-2 top-2 rounded-vfc bg-[var(--vfc-accent)] px-1.5 py-0.5 text-[10px] font-medium text-[var(--vfc-fg-on-accent)]">
+              <span className="absolute right-2 top-2 rounded-vfc bg-[var(--vfc-accent)] px-2 py-1 text-[10px] font-medium text-[var(--vfc-fg-on-accent)]">
                 {p.badge}
               </span>
             )}

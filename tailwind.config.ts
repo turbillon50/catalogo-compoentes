@@ -16,9 +16,11 @@ const config: Config = {
     extend: {
       borderRadius: {
         vfc: "var(--vfc-radius, 10px)",
+        "vfc-lg": "var(--vfc-radius-lg, 16px)",
       },
       boxShadow: {
         vfc: "var(--vfc-shadow, 0 1px 2px rgba(0,0,0,0.06))",
+        "vfc-lg": "var(--vfc-shadow-lg, 0 18px 50px rgba(0,0,0,0.12))",
       },
       fontFamily: {
         sans: ["var(--vfc-font-sans, ui-sans-serif)", "system-ui", "sans-serif"],

@@ -9,7 +9,11 @@ import { IconLoader } from "@/components/brand/VFIcons";
 export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
 export type ButtonSize = "sm" | "md" | "lg";
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration"
+  > {
   variant?: ButtonVariant;
   size?: ButtonSize;
   loading?: boolean;
@@ -32,12 +36,6 @@ const sizeClasses: Record<ButtonSize, string> = {
   lg: "h-12 px-5 text-base gap-2",
 };
 
-/**
- * Boton base del catalogo. Tematizable por variables CSS (--vfc-accent,
- * --vfc-surface, etc.) — no trae color propio, hereda el de la app que
- * lo consume. `loading` deshabilita el boton y muestra el spinner en
- * vez del contenido izquierdo.
- */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     { variant = "primary", size = "md", loading = false, disabled, className, children, ...rest },

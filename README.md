@@ -24,65 +24,53 @@ sin tocar el código:
 
 ## Qué hay ahorita
 
-### Componentes base (`components/ui/`)
-- `Button` — variantes `primary | secondary | ghost | danger`, tamaños
-  `sm | md | lg`, estado `loading`.
-- `Card` — con `CardTitle` / `CardDescription`, prop `interactive` para
-  hover lift.
-- `Modal` — cierre con Escape/click fuera, manejo básico de foco, entrada
-  fade+translateY con Framer Motion.
-- `Badge` — variantes `default | success | warning | danger`.
-- `Input` — con `label` y estado `error`.
-- `Select` — select nativo estilizado (accesible, sin dropdown propio).
+### Componentes base (`components/ui/`) — 28
+`Button`, `Card` (+ `CardTitle`/`CardDescription`), `Modal`, `Badge`, `Input`,
+`Select`, `Table` (+ subcomponentes), `Tabs`, `Tooltip`, `Avatar`, `Skeleton`,
+`Toast` (+ `ToastProvider`/`useToast`), `Accordion`, `Breadcrumb`,
+`Pagination`, `Progress`, `Switch`, `Checkbox`, `Radio`, `Textarea`,
+`EmptyState`, `Stepper`, `Drawer`, `Tag`, `Divider`, `Alert`, `StatCard`,
+`DropdownMenu`.
 
-### Kit de pantallas (`components/screens/`)
+Todos con microinteracciones reales (resorte de Framer Motion, no solo
+transiciones CSS planas) — el Switch/Checkbox/Radio responden con física de
+resorte, el Accordion anima altura real, el Tooltip entra con resorte y
+caret, el Skeleton tiene shimmer, el Tag sale animado al quitarse.
+
+### Kit de pantallas (`components/screens/`) — 11
 Los 11 patrones de layout que se repiten en las 16 plantillas de negocio del
-**protocolo de hornadas** (`/home/vagent/hornada/plantillas.js`, el archivo
-que usa el worker de cada hornada como brief de datos). Cada componente
-recibe el mismo shape de `datos` que ya trae ese archivo — sin transformar
-nada — así que las 16 plantillas (chat IA, e-commerce, delivery, red social,
-servicios, finanzas, fitness, restaurante, reservas, educación, noticias,
-viajes, música, streaming, movilidad) le entran directo:
+**protocolo de hornadas** (`/home/vagent/hornada/plantillas.js`). Cada
+componente recibe el mismo shape de `datos` que ya trae ese archivo — sin
+transformar nada:
 
-| Componente | `tipo` | Qué renderiza |
-|---|---|---|
-| `ChatScreen` | `chat` | burbujas + sugerencias + input |
-| `GridScreen` | `grid` | catálogo 2 columnas |
-| `ListScreen` | `list` | filas título/subtítulo/meta + CTA |
-| `DetailScreen` | `detail` | ficha con specs + CTA |
-| `ProfileScreen` | `profile` | header + menú |
-| `MapScreen` | `map` | placeholder de mapa + opciones de ruta |
-| `DashboardScreen` | `dashboard` | saldo + acciones + movimientos |
-| `PlayerScreen` | `player` | reproductor + cola |
-| `CalendarScreen` | `calendar` | slots de horario + CTA |
-| `FeedScreen` | `feed` | timeline de posts |
-| `LoginScreen` | `login` | entrada con email/password |
+`ChatScreen` (chat) · `GridScreen` (grid) · `ListScreen` (list) ·
+`DetailScreen` (detail) · `ProfileScreen` (profile) · `MapScreen` (map) ·
+`DashboardScreen` (dashboard) · `PlayerScreen` (player) ·
+`CalendarScreen` (calendar) · `FeedScreen` (feed) · `LoginScreen` (login)
 
-### Preset Craft (`components/craft/` + `data-theme="craft"`)
-Segunda piel — negro absoluto, acento violeta/cian/dorado — para pedidos de
-calidad craft top (mesh vivo, cristal, microinteracciones). Se activa
-envolviendo cualquier parte del árbol en `<div data-theme="craft">`; los
-componentes base (`Button`, `Card`, `Badge`...) heredan la piel solo por leer
-otras variables `--vfc-*`, sin que su código sepa que existe:
+### Preset Craft (`components/craft/` + `data-theme="craft"`) — 4
+Negro absoluto, acento violeta/cian/dorado, para pedidos de calidad craft
+top: `MeshBackground` (mesh vivo puro CSS), `GlassPanel` (cristal/backdrop-blur),
+`LiquidButton` (microinteracción agua/cristal: sweep+glow+ripple), `Loupe`
+(lupa que sigue el cursor y magnifica).
 
-| Componente | Qué hace |
-|---|---|
-| `MeshBackground` | 3 blobs radiales que respiran lento, puro CSS (sin canvas/imagen) |
-| `GlassPanel` | superficie de cristal — backdrop-blur + borde con brillo |
-| `LiquidButton` | microinteracción cristal/agua — barrido de luz + glow al hover, onda líquida al click, todo en el color de `--vfc-accent` |
-| `Loupe` | lupa que sigue el cursor y magnifica el contenido de abajo (clona el children escalado con CSS transform, sin canvas) |
+### Sistemas de diseño — 4 presets vía `data-theme`
+`default` (blanco/negro, look actual de vforge.site) · `craft` (negro
+absoluto + violeta) · `warm` (cálido/redondeado tipo Airbnb, naranja —
+mismo acento que V&LIVING) · `fintech` (serio, azul, cortante — Zuxen/finanzas)
+· `playful` (vibrante, morado — social/consumo).
 
-Ver `app/craft/page.tsx` para el showcase completo.
-
-`components/brand/VFIcons.tsx` — subset curado (17 íconos), sincronizado a
+`components/brand/VFIcons.tsx` — subset curado (19 íconos), sincronizado a
 mano con el patrón real de `turbillon50/vforge/components/brand/VFIcons.tsx`
-y con los mismos paths que `plantillas.js` (`IC`). Si necesitas un ícono que
-no está aquí, cópialo de esa fuente con el mismo patrón — nunca Lucide React.
+y con los mismos paths que `plantillas.js` (`IC`). Nunca Lucide React.
 
-`app/page.tsx` — showcase de los componentes base.
-`app/screens/page.tsx` — showcase del kit de pantallas con datos reales
-copiados de `plantillas.js` (ver `lib/sample-data.ts`).
-`app/craft/page.tsx` — showcase del preset craft (negro absoluto).
+## Showcases
+
+- `app/page.tsx` — componentes base (Button/Card/Modal/Badge/Input/Select)
+- `app/kit/page.tsx` — los 22 componentes extendidos
+- `app/screens/page.tsx` — el kit de 11 pantallas con datos reales
+- `app/craft/page.tsx` — el preset craft (negro absoluto)
+- `app/presets/page.tsx` — comparación lado a lado de warm/fintech/playful
 
 ## Cómo consumirla desde otra app (hoy)
 
@@ -98,9 +86,25 @@ e importar como paquete de workspace, o copiar las carpetas `components/ui`,
 lo usen de verdad, vale la pena formalizarlo como paquete privado en un
 registro (o pnpm workspace si se mueve a monorepo).
 
-## Pendiente
+## Reglas del catálogo (para no repetir errores ya corregidos)
 
-- Tests visuales / Storybook si el catálogo crece.
-- Conectar con el Brain para generar screenshots automáticos de cada
-  componente (la integración que ya menciona V en el chat de VForge).
+- **Nunca** usar nombres de clientes/proyectos reales de Luis como datos de
+  ejemplo en los showcases — solo nombres genéricos inventados.
+- Todo componente interactivo lleva **microinteracción real** (Framer
+  Motion con resorte/easing con propósito), no solo aparece/desaparece de
+  golpe — ese fue el estándar que pidió Luis explícitamente.
+- Cuando un componente extiende `HTMLAttributes` y se renderiza como
+  `motion.*`, hay que hacer `Omit` de `onDrag*`/`onAnimation*` (conflicto de
+  tipos real entre React y Framer Motion) — ver Button/Card/Alert como
+  referencia.
+
+## Pendiente / en curso
+
+- **Market de componentes**: Luis va a complementar el catálogo con material
+  adicional — el plan es construir una experiencia tipo marketplace
+  (búsqueda/categorías/preview) dentro de VForge, no solo páginas de
+  showcase sueltas. Se conecta con el plan ya acordado de la sala en vivo
+  (`vforge-api`, recurso `cart` nuevo — ver `/areas/vforge-site.md` /
+  contexto del Brain) y el nuevo item del sidebar debajo de "Administración".
+- Tests visuales / Storybook si el catálogo sigue creciendo.
 - Formalizar como paquete npm privado cuando 2+ apps reales lo consuman.

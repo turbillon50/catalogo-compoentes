@@ -4,7 +4,11 @@ import type { HTMLAttributes } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 
-export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps
+  extends Omit<
+    HTMLAttributes<HTMLDivElement>,
+    "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration"
+  > {
   /** Si es true, agrega hover lift + sombra — usalo para tarjetas clicables. */
   interactive?: boolean;
 }

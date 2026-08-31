@@ -35,11 +35,11 @@ export function CalendarScreen({ titulo, slots, cta, onSelect, onCta, className 
             className={cn(
               "flex w-full items-center justify-between rounded-vfc border px-4 py-3 text-left",
               sl.dispo
-                ? "border-[var(--vfc-border)] hover:border-[var(--vfc-border-strong)] hover:bg-[var(--vfc-surface-2)]"
+                ? "border-[var(--vfc-border)] transition-colors duration-150 ease-casa hover:border-[var(--vfc-border-strong)] hover:bg-[var(--vfc-surface-2)]"
                 : "cursor-not-allowed border-[var(--vfc-border)] opacity-40"
             )}
           >
-            <span className="text-sm font-medium text-[var(--vfc-fg)]">{sl.h}</span>
+            <span className="text-sm font-medium tabular-nums text-[var(--vfc-fg)]">{sl.h}</span>
             <span className="text-sm text-[var(--vfc-fg-muted)]">{sl.t}</span>
           </button>
         ))}

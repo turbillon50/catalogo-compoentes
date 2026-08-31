@@ -7,10 +7,11 @@ la importe en vez de reinventar botones, modales o pantallas cada vez.
 
 Esta librería **no trae ningún color propio**. Todo componente lee sus
 colores, radios y sombras de variables CSS `--vfc-*` definidas en
-`app/globals.css`. Los valores de ahí son solo el *default* — hoy calcado
-del look real de vforge.site en producción (blanco/negro, minimal) — pero
-cualquier app consumidora los sobreescribe en su propio `:root` y los
-mismos componentes se ven con su marca, sin tocar el código:
+`app/globals.css`. Los valores del `:root` son solo el *default* — hoy
+calcado del look real de vforge.site en producción (blanco/negro, minimal)
+— pero cualquier app consumidora los sobreescribe en su propio `:root` (o
+en un `data-theme` propio) y los mismos componentes se ven con su marca,
+sin tocar el código:
 
 ```css
 /* globals.css de, por ejemplo, V&LIVING */
@@ -57,6 +58,22 @@ viajes, música, streaming, movilidad) le entran directo:
 | `FeedScreen` | `feed` | timeline de posts |
 | `LoginScreen` | `login` | entrada con email/password |
 
+### Preset Craft (`components/craft/` + `data-theme="craft"`)
+Segunda piel — negro absoluto, acento violeta/cian/dorado — para pedidos de
+calidad craft top (mesh vivo, cristal, microinteracciones). Se activa
+envolviendo cualquier parte del árbol en `<div data-theme="craft">`; los
+componentes base (`Button`, `Card`, `Badge`...) heredan la piel solo por leer
+otras variables `--vfc-*`, sin que su código sepa que existe:
+
+| Componente | Qué hace |
+|---|---|
+| `MeshBackground` | 3 blobs radiales que respiran lento, puro CSS (sin canvas/imagen) |
+| `GlassPanel` | superficie de cristal — backdrop-blur + borde con brillo |
+| `LiquidButton` | microinteracción cristal/agua — barrido de luz + glow al hover, onda líquida al click, todo en el color de `--vfc-accent` |
+| `Loupe` | lupa que sigue el cursor y magnifica el contenido de abajo (clona el children escalado con CSS transform, sin canvas) |
+
+Ver `app/craft/page.tsx` para el showcase completo.
+
 `components/brand/VFIcons.tsx` — subset curado (17 íconos), sincronizado a
 mano con el patrón real de `turbillon50/vforge/components/brand/VFIcons.tsx`
 y con los mismos paths que `plantillas.js` (`IC`). Si necesitas un ícono que
@@ -65,6 +82,7 @@ no está aquí, cópialo de esa fuente con el mismo patrón — nunca Lucide Rea
 `app/page.tsx` — showcase de los componentes base.
 `app/screens/page.tsx` — showcase del kit de pantallas con datos reales
 copiados de `plantillas.js` (ver `lib/sample-data.ts`).
+`app/craft/page.tsx` — showcase del preset craft (negro absoluto).
 
 ## Cómo consumirla desde otra app (hoy)
 
@@ -75,10 +93,10 @@ npm install github:turbillon50/catalogo-compoentes
 ```
 
 e importar como paquete de workspace, o copiar las carpetas `components/ui`,
-`components/screens`, `components/brand` + los tokens de `globals.css` al
-proyecto consumidor. Cuando el catálogo crezca y varias apps lo usen de
-verdad, vale la pena formalizarlo como paquete privado en un registro (o
-pnpm workspace si se mueve a monorepo).
+`components/screens`, `components/craft`, `components/brand` + los tokens de
+`globals.css` al proyecto consumidor. Cuando el catálogo crezca y varias apps
+lo usen de verdad, vale la pena formalizarlo como paquete privado en un
+registro (o pnpm workspace si se mueve a monorepo).
 
 ## Pendiente
 

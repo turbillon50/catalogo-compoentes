@@ -73,6 +73,12 @@ export const IconChevR = ({ size = 20, ...p }: IP) => (
   </svg>
 );
 
+export const IconChevL = ({ size = 20, ...p }: IP) => (
+  <svg {...b(size, p)}>
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+);
+
 export const IconSend = ({ size = 20, ...p }: IP) => (
   <svg {...b(size, p)}>
     <path d="M22 2L11 13M22 2l-7 20-4-9-9-4z" />

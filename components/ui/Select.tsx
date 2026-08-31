@@ -17,8 +17,8 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 /**
- * Select nativo estilizado (sin librería de dropdown propia — accesibilidad
- * gratis, consistente con "zero shadcn" del sistema de diseño).
+ * Select nativo estilizado. Regla 8 — mb-1.5/py-2.5/pr-9 no eran del
+ * ritmo de 4px; ahora mb-2(8)/py-3(12)/pr-8(32).
  */
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ({ label, options, placeholder, id, className, ...rest }, ref) => {
@@ -28,7 +28,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {label && (
           <label
             htmlFor={selectId}
-            className="mb-1.5 block text-xs font-medium text-[var(--vfc-fg-muted)]"
+            className="mb-2 block text-xs font-medium text-[var(--vfc-fg-muted)]"
           >
             {label}
           </label>
@@ -38,7 +38,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             ref={ref}
             id={selectId}
             className={cn(
-              "w-full appearance-none rounded-vfc border border-[var(--vfc-border)] bg-[var(--vfc-surface)] px-3 py-2.5 pr-9 text-sm text-[var(--vfc-fg)] outline-none focus:border-[var(--vfc-border-strong)]",
+              "w-full appearance-none rounded-vfc border border-[var(--vfc-border)] bg-[var(--vfc-surface)] px-3 py-3 pr-8 text-sm text-[var(--vfc-fg)] outline-none transition-colors duration-150 ease-casa focus:border-[var(--vfc-border-strong)]",
               className
             )}
             {...rest}
